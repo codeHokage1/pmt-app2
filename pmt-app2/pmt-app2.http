@@ -1,0 +1,6 @@
+@pmt_app2_HostAddress = http://localhost:5125
+
+GET {{pmt_app2_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
