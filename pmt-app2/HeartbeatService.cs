@@ -19,9 +19,22 @@ namespace pmt_app2
             while (!stoppingToken.IsCancellationRequested)
             {
                 _logger.LogInformation("Sending heartbeat from App 2");
-                await _producerService.ProduceAsync("Hello there from App 2");
+                var messageToSend = new AppInfo
+                {
+                    ApplicationName = "App 2",
+                    Timestamp = DateTime.UtcNow
+                };
+                // await _producerService.ProduceAsync("How far!Let's do this monitoring app!");
+                var heartbeatMessage = JsonSerializer.Serialize(messageToSend);
+                await _producerService.ProduceAsync(heartbeatMessage);
                 await Task.Delay(TimeSpan.FromSeconds(30), stoppingToken); // Send heartbeat every 30 seconds
             }
         }
+    }
+
+    public class AppInfo
+    {
+        public string ApplicationName { get; set; }
+        public DateTime Timestamp { get; set; }
     }
 }
