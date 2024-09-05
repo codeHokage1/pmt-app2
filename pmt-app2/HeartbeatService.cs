@@ -21,7 +21,8 @@ namespace pmt_app2
                 _logger.LogInformation("Sending heartbeat from App 2");
                 var messageToSend = new AppInfo
                 {
-                    ApplicationName = "App 2",
+                    ApplicationName = "App2",
+                    ApplicationId = "app2-XY",
                     Timestamp = DateTime.UtcNow
                 };
                 // await _producerService.ProduceAsync("How far!Let's do this monitoring app!");
@@ -35,6 +36,7 @@ namespace pmt_app2
     public class AppInfo
     {
         public string ApplicationName { get; set; }
+        public string ApplicationId { get; set; }
         public DateTime Timestamp { get; set; }
     }
 }
